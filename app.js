@@ -1,13 +1,14 @@
 const express = require('express')
-
 const hbs = require('hbs')
 const { mainModule } = require('process')
+const path = require('path')
 
 const app = express()
 
 app.use(express.static(`${__dirname}/public`))
 app.set('view engine', 'hbs')
-hbs.registerPartials(`${__dirname}/views/partials`)
+//hbs.registerPartials(`${__dirname}/views/partials`)
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'))
 
 app.get('/', (request, response) => {
   response.render('home', {
