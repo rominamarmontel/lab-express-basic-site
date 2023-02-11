@@ -8,12 +8,12 @@ const app = express()
 app.use(express.static(`${__dirname}/public`))
 app.set('view engine', 'hbs')
 //hbs.registerPartials(`${__dirname}/views/partials`)
-hbs.registerPartials(path.join(__dirname, 'views', 'partials'))
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'))//partialsは分割されたパーツ（navbarやfooter）
 
 app.get('/', (request, response) => {
   response.render('home', {
     navbar: true,
-    title: 'Main page',
+    title: 'AKI KURODA - Home',//siteのバーに表示される
     css: "main.css",
   })
 })
@@ -22,8 +22,8 @@ app.get('/about', (req, res) => {
   console.log(req.query)
   res.render('about', { 
     navbar: true,
-    title: 'About page',
-    css: "about.css",
+    title: 'AKI KURODA - About',
+    css: "main.css",
   })
 })
 
@@ -31,8 +31,8 @@ app.get('/works', (req, res) => {
   console.log(req.query)
   res.render('works', { 
     navbar: true,
-    title: 'My works',
-    css: "works.css" 
+    title: 'AKI KURODA - Works',
+    css: "main.css" 
    })
 })
 
@@ -40,8 +40,9 @@ app.get('/photo', (req, res) => {
   console.log(req.query)
   res.render('photo', { 
     navbar: true,
-    title: 'Photo Gallery',
-    css: "photo.css"  })
+    title: 'AKI KURODA - Photo Gallery',
+    css: "main.css"  
+  })
 })
 
 app.get('*', (req, res) => {
