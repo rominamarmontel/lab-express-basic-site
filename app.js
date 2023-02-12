@@ -10,16 +10,15 @@ app.set('view engine', 'hbs')
 //hbs.registerPartials(`${__dirname}/views/partials`)
 hbs.registerPartials(path.join(__dirname, 'views', 'partials'))//partialsは分割されたパーツ（navbarやfooter）
 
-app.get('/', (request, response) => {
-  response.render('home', {
+app.get('/', (req, res, next) => {
+  res.render('home', {
     navbar: true,
     title: 'AKI KURODA - Home',//siteのバーに表示される
     css: "main.css",
   })
 })
 
-app.get('/about', (req, res) => {
-  console.log(req.query)
+app.get('/about', (req, res, next) => {
   res.render('about', { 
     navbar: true,
     title: 'AKI KURODA - About',
@@ -27,8 +26,7 @@ app.get('/about', (req, res) => {
   })
 })
 
-app.get('/works', (req, res) => {
-  console.log(req.query)
+app.get('/works', (req, res, next) => {
   res.render('works', { 
     navbar: true,
     title: 'AKI KURODA - Works',
@@ -36,8 +34,7 @@ app.get('/works', (req, res) => {
    })
 })
 
-app.get('/photo', (req, res) => {
-  console.log(req.query)
+app.get('/photo', (req, res, next) => {
   res.render('photo', { 
     navbar: true,
     title: 'AKI KURODA - Photo Gallery',
@@ -45,8 +42,7 @@ app.get('/photo', (req, res) => {
   })
 })
 
-app.get('*', (req, res) => {
-  console.log(req.originalUrl)
+app.get('*', (req, res, next) => {
   res.statusCode = 404
 
   res.render('error', {
